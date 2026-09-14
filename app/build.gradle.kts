@@ -14,7 +14,11 @@ val localProps = Properties().apply {
     if (f.exists()) load(f.inputStream())
 }
 
-android {
+android {buildTypes {
+    getByName("debug") {
+        applicationIdSuffix = ".debug"
+    }
+}
     namespace = "com.pockettavern.app"
     compileSdk = 36  // required by Llamatik (llama.cpp GGUF); targetSdk stays 35
     // AGP 8.7.3's default ndkVersion (27.0.12077973) conflicts with the NDK actually installed
